@@ -1,2 +1,10 @@
-This is my weather project work
-
+<th style="width: 22%;">CLOUD_PCT</th>
+<th style="width: 22%;">FEELS_LIKE</th>
+<th style="width: 22%;">HUMIDITY</th>
+<th style="width: 22%;">MAX_TEMP</th>
+<th style="width: 22%;">MIN_TEMP</th>
+<th style="width: 22%;">SUNRISE</th>
+<th style="width: 22%;">SUNSET</th>
+<th style="width: 22%;">TEMP</th>
+<th style="width: 22%;">WIND_DEGREES</th>
+<th style="width: 22%;">WIND_SPEED</th>
