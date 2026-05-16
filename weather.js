@@ -1,4 +1,4 @@
-const url = 'https://api.api-ninjas.com/v1/weather?city=srinagar';
+const url = `https://api.api-ninjas.com/v1/weather?lat=32.733&lon=74.867`;
 const options = {
 	method: 'GET',
 	headers: {
