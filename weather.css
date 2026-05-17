@@ -130,6 +130,7 @@ body {
   margin-top: 20px;
   overflow-x: auto; /* Adds smooth scrolling on mobile screens */
   padding-bottom: 10px;
+  
 }
 
 .forecast-card {
@@ -174,6 +175,49 @@ body {
 
 .min-temp {
   color: #d1d5db; /* Lighter grey for low temperatures */
+}
+#suggestions{
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.suggestion-item{
+    padding: 10px;
+    cursor: pointer;
+    color: black;
+}
+
+.suggestion-item:hover{
+    background: #f1f1f1;
+}
+
+.forecast-container{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.forecast-card{
+    width: 160px;
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+}
+
+.forecast-card:hover{
+    transform: translateY(-5px);
+}
+
+.forecast-icon{
+    width: 70px;
 }
 
 

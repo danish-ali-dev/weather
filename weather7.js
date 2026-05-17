@@ -115,7 +115,84 @@ citySearchForm.addEventListener("submit", function(event) {
     const city = citySearchInput.value;
 
     fetchWeather(city);
+    fetchForecast(city);
 
 });
 
 fetchWeather();
+fetchForecast();
+
+async function fetchForecast(city = "Srinagar") {
+    setText("cityNameHeader", city); // immediately update city name in header for better UX. imp for change forcast accoring to input city
+
+    const url =
+    `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+
+    try {
+
+        const response = await fetch(url);
+
+        const data = await response.json();
+
+        const forecastContainer =
+        document.querySelector(".forecast-container");
+
+        forecastContainer.innerHTML = "";
+
+        const dailyForecasts =
+        data.list.filter(item =>
+            item.dt_txt.includes("12:00:00")
+        );
+
+        dailyForecasts.forEach(day => {
+
+            const date = new Date(day.dt_txt);
+
+            const dayName =
+            date.toLocaleDateString("en-US", {
+                weekday: "short"
+            });
+
+            const icon =
+            `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
+
+            const card = `
+                <div class="forecast-card">
+
+                    <h3>${dayName}</h3>
+
+                    <img
+                      class="forecast-icon"
+                      src="${icon}"
+                    >
+
+                     <h4>${day.weather[0].main}</h4>
+
+                    <h2>
+                      ${Math.round(day.main.temp)}°C
+                    </h2>
+
+                    <p>
+                      ${Math.round(day.main.temp_min)}°
+                      /
+                      ${Math.round(day.main.temp_max)}°
+                    </p>
+
+                    <p>
+                      Humidity:
+                      ${day.main.humidity}%
+                    </p>
+
+                </div>
+            `;
+
+            forecastContainer.innerHTML += card;
+
+        });
+
+    } catch(error){
+
+        console.log(error);
+
+    }
+}
