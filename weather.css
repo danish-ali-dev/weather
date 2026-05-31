@@ -52,21 +52,26 @@ body {
     margin: 20px auto;
     max-width: 1200px;
     margin-bottom: 30px;
-    background: rgba(255, 255, 255, 0.8);
+    background: #e0fbfc;
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
 
 
 }
-.col:hover {
+.col1:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
 }
 .col .card-header {
     background-color: var(--card-header-bg);
-    color: brown;
-    font-size: 1.25rem;
+    font-size: 2rem;
     font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg,#ff512f, #f09819);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Poppins', sans-serif;
 
 }
 .table-responsive {
@@ -105,7 +110,7 @@ body {
 }
 .card {
     flex: 1;
-    background: #ffffff;
+    background: #e0fbfc;
     border-radius: 12px;
     padding: 20px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -125,24 +130,30 @@ body {
 }
 .forecast-container {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: nowrap; /* Prevents wrapping to multiple lines */
+  overflow-x: auto; /* Enables horizontal scrolling on smaller screens */
+  justify-content: flex-start;
   gap: 15px;
   margin-top: 20px;
   overflow-x: auto; /* Adds smooth scrolling on mobile screens */
   padding-bottom: 10px;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
   
 }
 
 .forecast-card {
-  flex: 1;
-  min-width: 100px; /* Prevents cards from squishing too much */
+  flex: 0 0 220px;
+  min-width: 220px; /* Prevents cards from squishing too much */
   background: rgba(255, 255, 255, 0.15); /* Slightly translucent white */
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
+  border-radius: 20px;
   padding: 15px;
   text-align: center;
   transition: transform 0.2s ease;
+  scroll-snap-align: start;
+  
 }
 
 .forecast-card:hover {
@@ -195,31 +206,34 @@ body {
 .suggestion-item:hover{
     background: #f1f1f1;
 }
-
-.forecast-container{
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.forecast-card{
-    width: 160px;
-    padding: 20px;
-    border-radius: 20px;
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(10px);
-    transition: 0.3s;
-}
-
-.forecast-card:hover{
-    transform: translateY(-5px);
-}
-
-.forecast-icon{
-    width: 70px;
-}
-
-
+.display-temp {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #db4404;
     
-
+}
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #9e0505;
+    
+}
+.col1 {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+    margin-bottom: 30px;
+    background: #ffe5d9;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}                                                                                                  
