@@ -34,26 +34,29 @@
               </ul>
             </li>
           </ul>
-          <!-- <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" id="citySearchInput" placeholder="Search" aria-label="Search"/>
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form> -->
-          <form class="d-flex position-relative" role="search"> 
-            <div class="w-100"> 
-              <input class="form-control me-2" type="search" id="citySearchInput" placeholder="Search city..." autocomplete="off" /> 
-              <div id="suggestions"></div> 
-            </div> 
-            <button class="btn btn-outline-success" type="submit"> Search </button> 
-          </form>
-
         </div>
       </div> 
     </nav>
     <div class="container">
-      <h1 class="text-center my-4">Weather For <span id="cityNameHeader">Srinagar</span></h1>
+      <div>
+        <form class="d-flex position-relative city-search-form" role="search"> 
+            <div class="w-100"> 
+              <input class="form-control me-2 city-search-input" type="search" placeholder="Search city..." autocomplete="off" /> 
+              <div class="suggestions"></div> 
+            </div> 
+            <button class="btn btn-outline-success" type="submit"> Search </button> 
+          </form>
+          <button id="searchicon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+      </div>
+        <h1 class="text-center my-4">Weather For <span id="cityNameHeader">Srinagar</span></h1>
+
+    </div>
       <main class="text-center"> 
         <div class="row row-cols-1 row-cols-md-3 mb-3 text-center"> 
           <div class="col1"> 
+            <!-- <img src="temp.jpg" alt="Background Image"> -->
             <div class="card mb-4 rounded-3 shadow-sm"> 
               <div class="card-header py-3"> 
                 <h4 class="my-0 fw-normal">Temperature</h4> 

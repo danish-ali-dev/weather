@@ -38,8 +38,13 @@ body {
     align-items: center;
     position: relative;
 }
+.city-search-form .w-100 {
+    position: relative;
+}
 .col {
-    background-color: var(--card-bg);
+    /* background-color: var(--card-bg); */
+    background-size: cover;
+    
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     overflow: hidden;
@@ -52,7 +57,7 @@ body {
     margin: 20px auto;
     max-width: 1200px;
     margin-bottom: 30px;
-    background: #e0fbfc;
+    /* background: #e0fbfc; */
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
 
@@ -187,9 +192,10 @@ body {
 .min-temp {
   color: #d1d5db; /* Lighter grey for low temperatures */
 }
-#suggestions{
+.suggestions{
     position: absolute;
-    top: 50px;
+    top: 100%;
+    left: 0;
     width: 100%;
     background: white;
     border-radius: 10px;
@@ -237,3 +243,48 @@ body {
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
 }                                                                                                  
+.w-100 {
+    margin-top: 10px;
+}
+.btn-outline-success {
+    background-color: #6895d0;
+    margin-top: 10px;
+    color: #000;
+}
+.btn-outline-success:hover {
+    background-color: #282227;
+    border-color: #c4c4c4;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 114, 255, 10);
+}
+#searchicon {
+    position:absolute;
+    right: 20px;
+    top: 70px;
+    background: ;
+    border: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    color: #25b9f8;
+    font-size: 10px;
+}
+.city-search-input {
+    
+    padding-right: 60px; /* Space for the search icon */
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+.form-control {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+.col1::before{
+    background-image: url("temp.jpg");
+    background-size: cover;
+}

@@ -1,8 +1,8 @@
 
 const apiKey = "65505787fd071a3a246776cf7bb71e98";
 
-const citySearchForm = document.querySelector('form');
-const citySearchInput = document.getElementById('citySearchInput');
+const citySearchForms = document.querySelectorAll('.city-search-form');
+const cities = ["Srinagar", "Delhi", "Mumbai", "Chennai", "Kolkata", "Bangalore", "Hyderabad", "Pune", "Ahmedabad", "Jaipur","Jammu", "Lucknow", "Kanpur", "Nagpur", "Indore", "Thane", "Bhopal", "Visakhapatnam", "Pimpri-Chinchwad", "Patna", "Vadodara"];
 
 function setText(id, value) {
     document.getElementById(id).textContent = value;
@@ -15,7 +15,7 @@ function changeBackground(weatherType) {
 
         case "clear":
             body.style.background =
-            "linear-gradient(to right, #56ccf2, #2f80ed)";
+            "linear-gradient(to right, #56ccf2, rgb(112, 165, 236))";
             body.style.color = "white";
             break;
 
@@ -54,7 +54,7 @@ function changeBackground(weatherType) {
 async function fetchWeather(city = "Srinagar") {
 
     const url =
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric`;
 
     try {
 
@@ -108,15 +108,51 @@ async function fetchWeather(city = "Srinagar") {
     }
 }
 
-citySearchForm.addEventListener("submit", function(event) {
+citySearchForms.forEach(form => {
+    const citySearchInput = form.querySelector(".city-search-input");
+    const suggestionsContainer = form.querySelector(".suggestions");
 
-    event.preventDefault();
+    citySearchInput.addEventListener("input", () => {
+        const inputValue = citySearchInput.value.trim().toLowerCase();
+        suggestionsContainer.innerHTML = "";
 
-    const city = citySearchInput.value;
+        if (!inputValue) {
+            return;
+        }
 
-    fetchWeather(city);
-    fetchForecast(city);
+        const filteredCities = cities.filter(city =>
+            city.toLowerCase().includes(inputValue)
+        );
 
+        filteredCities.forEach(city => {
+            const suggestionItem = document.createElement("div");
+            suggestionItem.classList.add("suggestion-item");
+            suggestionItem.textContent = city;
+
+            suggestionItem.addEventListener("click", () => {
+                citySearchInput.value = city;
+                suggestionsContainer.innerHTML = "";
+                fetchWeather(city);
+                fetchForecast(city);
+            });
+
+            suggestionsContainer.appendChild(suggestionItem);
+        });
+    });
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const city = citySearchInput.value.trim();
+
+        if (!city) {
+            return;
+        }
+
+        suggestionsContainer.innerHTML = "";
+        fetchWeather(city);
+        fetchForecast(city);
+    });
 });
 
 fetchWeather();
@@ -126,11 +162,15 @@ async function fetchForecast(city = "Srinagar") {
     setText("cityNameHeader", city); // immediately update city name in header for better UX. imp for change forcast accoring to input city
 
     const url =
-    `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+    `https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric`;
 
     try {
 
         const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("Forecast city not found");
+        }
 
         const data = await response.json();
 
